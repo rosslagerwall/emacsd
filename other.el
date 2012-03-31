@@ -1,0 +1,51 @@
+;; marker at 80 chars
+;;(require 'column-marker)
+;;(column-marker-1 80)
+(require 'fill-column-indicator)
+(add-hook 'after-change-major-mode-hook 'fci-mode)
+(setq-default fill-column 80)
+(setq fci-rule-column 80)
+
+(require 'visible-mark)
+(add-hook 'after-change-major-mode-hook 'visible-mark-mode)
+
+;; ido makes competing buffers and finding files easier
+;; http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
+(require 'ido) 
+;; more flexible matching
+(setq  ido-enable-flex-matching t)
+(setq ido-file-extensions-order '(".c" ".cpp" ".py" ".java"))
+(setq 
+  ido-ignore-buffers ;; ignore these guys
+  '("\\` " "^\*Mess" "^\*Back" ".*Completion" "^\*Ido" "^\*trace"
+    "^\*compilation" "^\*GTAGS" "^session\.*" "^\*"))
+(setq  ido-case-fold  t)                 ; be case-insensitive
+(setq ido-max-work-file-list      50)   ; remember many
+(setq ido-enable-last-directory-history t) ; remember last used dirs
+(setq  ido-max-work-directory-list 50)   ; should be enough
+(setq ido-work-directory-list '("~/" "~/src"))
+(ido-mode 'both) ;; for buffers and files
+
+;;  ido-use-filename-at-point nil    ; don't use filename at point (annoying)
+;; ido-use-url-at-point nil         ; don't use url at point (annoying)
+
+
+(require 'recentf)
+ 
+;; bind recent file open to F7
+(global-set-key (kbd "<f7>") 'ido-recentf-open)
+ 
+;; enable recent files mode.
+(recentf-mode t)
+ 
+; 50 files ought to be enough.
+(setq recentf-max-saved-items 50)
+ 
+(defun ido-recentf-open ()
+  "Use `ido-completing-read' to \\[find-file] a recent file"
+  (interactive)
+  (if (find-file (ido-completing-read "Find recent file: " recentf-list))
+      (message "Opening file...")
+    (message "Aborting")))
+
+(provide 'other)
