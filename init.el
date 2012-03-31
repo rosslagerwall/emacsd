@@ -13,12 +13,14 @@
 (setq diff-switches "-u")
 
 ;; disable tabs by default, use linux style and 4 indent width
-(setq-default indent-tabs-mode nil)
+;; the following line doesn't seem to be needed with emacs 24 and cc-guess
+;;(setq-default indent-tabs-mode nil)
 (setq c-default-style "linux"
       c-basic-offset 4)
+;; not needed with emacs 24 and cc-guess
 ;; use dtrt to automatically use the correct tab/indenting style
-(require 'dtrt-indent)
-(dtrt-indent-mode 1)
+;;(require 'dtrt-indent)
+;;(dtrt-indent-mode 1)
 
 ;; make "yes or no" "y or n"
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -63,7 +65,8 @@
 (if (window-system) (set-frame-size (selected-frame) 100 45))
 
 ;; http://stackoverflow.com/questions/64360/how-to-copy-text-from-emacs-to-another-application-on-linux
-(setq x-select-enable-clipboard t)
+;; not needed for emacs 24
+;; (setq x-select-enable-clipboard t)
 
 (require 'bindings)
 (require 'other)
