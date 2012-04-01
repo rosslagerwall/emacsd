@@ -14,13 +14,13 @@
 
 ;; disable tabs by default, use linux style and 4 indent width
 ;; the following line doesn't seem to be needed with emacs 24 and cc-guess
-;;(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 (setq c-default-style "linux"
       c-basic-offset 4)
-;; not needed with emacs 24 and cc-guess
+;; not needed with emacs 24 and cc-guess (needed to guess between tabs and spaces)
 ;; use dtrt to automatically use the correct tab/indenting style
-;;(require 'dtrt-indent)
-;;(dtrt-indent-mode 1)
+(require 'dtrt-indent)
+(dtrt-indent-mode 1)
 
 ;; make "yes or no" "y or n"
 (fset 'yes-or-no-p 'y-or-n-p)
