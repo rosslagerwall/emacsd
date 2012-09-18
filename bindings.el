@@ -8,20 +8,20 @@
 (global-set-key (kbd "<f10>") 'compile)
 
 ;; enter is newline & indent for c mode
-(add-hook 'c-mode-common-hook '(lambda ()
-      (local-set-key (kbd "RET") 'newline-and-indent)))
+;;(add-hook 'c-mode-common-hook '(lambda ()
+;;      (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ;; enter is newline
-(add-hook 'c-mode-common-hook '(lambda ()
-      (local-set-key (kbd "C-j") 'newline)))
+;;(add-hook 'c-mode-common-hook '(lambda ()
+;;      (local-set-key (kbd "C-j") 'newline)))
 
 ;; enter is newline & indent for python mode
-(add-hook 'python-mode-hook '(lambda ()
-      (local-set-key (kbd "RET") 'newline-and-indent)))
+;;(add-hook 'python-mode-hook '(lambda ()
+;;      (local-set-key (kbd "RET") 'newline-and-indent)))
 
 ;; enter is newline
-(add-hook 'python-mode-hook '(lambda ()
-      (local-set-key (kbd "C-j") 'newline)))
+;;(add-hook 'python-mode-hook '(lambda ()
+;;      (local-set-key (kbd "C-j") 'newline)))
 
 ;; move to mark with F9
 (defun jump-to-mark ()
