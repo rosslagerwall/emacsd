@@ -48,4 +48,34 @@ This is the same as using \\[set-mark-command] with the prefix argument."
 ;; Other window with F8
 (global-set-key (kbd "<f8>") 'other-window)
 
+;; toggle indentation level
+;; http://stackoverflow.com/questions/530461/emacs-lisp-function-to-toggle-variable-tab-width-between-4-8
+(global-set-key (kbd "<f5>") 'tf-toggle-tab-width-setting)
+(defun tf-toggle-tab-width-setting ()
+    "Toggle setting tab widths between 4 and 8"
+    (interactive)
+    (setq c-basic-offset (if (= c-basic-offset 8) 4 8))
+    (message "set c-basic-offset to %d." c-basic-offset)
+    (redraw-display))
+
+;; toggle tabs or spaces
+;; http://stackoverflow.com/questions/530461/emacs-lisp-function-to-toggle-variable-tab-width-between-4-8
+(global-set-key (kbd "<f6>") 'tf-toggle-tab-mode-setting)
+(defun tf-toggle-tab-mode-setting ()
+    "Toggle setting tab or spaces"
+    (interactive)
+    (setq indent-tabs-mode (if (eq indent-tabs-mode t) nil t))
+    (message "Indenting using %s." (if (eq indent-tabs-mode t) "tabs" "spaces"))
+    (redraw-display))
+
+;; toggle tab indentation level
+;; http://stackoverflow.com/questions/530461/emacs-lisp-function-to-toggle-variable-tab-width-between-4-8
+(global-set-key (kbd "<f4>") 'tf-toggle-actual-tab-width-setting)
+(defun tf-toggle-actual-tab-width-setting ()
+    "Toggle setting actual tab widths between 4 and 8"
+    (interactive)
+    (setq tab-width (if (= tab-width 8) 4 8))
+    (message "set tab-width to %d." tab-width)
+    (redraw-display))
+
 (provide 'bindings)
