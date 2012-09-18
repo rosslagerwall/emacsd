@@ -1,7 +1,7 @@
 ;; .emacs
 
 ;; set up load path
- (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d")
 
 ;; prefer UTF-8 coding system
 (setq prefer-coding-system 'utf-8)
@@ -19,8 +19,8 @@
       c-basic-offset 4)
 ;; not needed with emacs 24 and cc-guess (needed to guess between tabs and spaces)
 ;; use dtrt to automatically use the correct tab/indenting style
-(require 'dtrt-indent)
-(dtrt-indent-mode 1)
+;;(require 'dtrt-indent)
+;;(dtrt-indent-mode 1)
 
 ;; make "yes or no" "y or n"
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -28,7 +28,6 @@
 ;; make all backups in a single directory
 (setq backup-directory-alist
       `(("." . ,(expand-file-name "~/.emacs.d/_backups"))))
-
 
 ;; make the font a bit bigger
 (set-face-attribute 'default nil :height 110)
