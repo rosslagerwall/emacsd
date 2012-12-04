@@ -59,7 +59,7 @@
 ;;   nil '(("\\<\\(FIX\\|TODO\\|FIXME\\|HACK\\|REFACTOR\\):"
 ;;          1 font-lock-warning-face t)))
 
-(setq compile-command "make -j 3")
+(setq compile-command "make -j 8")
 
 (if (window-system) (set-frame-size (selected-frame) 100 45))
 
