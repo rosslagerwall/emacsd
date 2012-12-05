@@ -56,4 +56,10 @@
 (add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
 ; (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
 
+(add-hook 'git-commit-mode-hook
+  (lambda ()
+    (setq fci-rule-column 72)
+    (setq fill-column 72)
+))
+
 (provide 'other)
