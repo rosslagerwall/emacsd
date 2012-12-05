@@ -49,8 +49,9 @@
     (message "Aborting")))
 
 ; https://raw.github.com/rafl/git-commit-mode/master/git-commit.el
-; When committing, C-c saves and exits.
-; C-x k y y discards the buffer
+; When committing, C-c C-c saves and exits.
+; C-x k y y, C-c C-x or C-c C-c with an empty message discards the buffer and
+; does not commit anything
 (require 'git-commit)
 ; don't remember where you are in the git commit buffer
 (add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
@@ -61,5 +62,16 @@
     (setq fci-rule-column 72)
     (setq fill-column 72)
 ))
+
+(defun kill-buffer-unconditionally ()
+  (interactive nil)
+  (set-buffer-modified-p nil)
+  (make-local-variable 'kill-buffer-query-functions)
+  (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
+  (kill-buffer))
+
+(add-hook 'git-commit-mode-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c C-x") 'kill-buffer-unconditionally)))
 
 (provide 'other)
