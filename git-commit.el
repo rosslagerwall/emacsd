@@ -307,7 +307,7 @@ message, you might want to this:
           (lambda () (save-buffers-kill-terminal)))"
   (interactive)
   (save-buffer)
-  (funcall git-commit-commit-function))
+  (save-buffers-kill-terminal))
 
 (defun git-commit-git-config-var (key)
   "Retrieve a git configuration value.

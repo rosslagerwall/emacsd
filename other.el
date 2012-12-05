@@ -49,6 +49,8 @@
     (message "Aborting")))
 
 ; https://raw.github.com/rafl/git-commit-mode/master/git-commit.el
+; When committing, C-c saves and exits.
+; C-x k y y discards the buffer
 (require 'git-commit)
 ; don't remember where you are in the git commit buffer
 (add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
