@@ -48,4 +48,10 @@
       (message "Opening file...")
     (message "Aborting")))
 
+; https://raw.github.com/rafl/git-commit-mode/master/git-commit.el
+(require 'git-commit)
+; don't remember where you are in the git commit buffer
+(add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
+; (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
+
 (provide 'other)
