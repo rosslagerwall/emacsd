@@ -12,6 +12,7 @@
 ;; ido makes competing buffers and finding files easier
 ;; http://www.emacswiki.org/cgi-bin/wiki/InteractivelyDoThings
 (require 'ido) 
+(setq ido-save-directory-list-file "~/.cache/emacs/ido.last")
 ;; more flexible matching
 (setq  ido-enable-flex-matching t)
 (setq ido-file-extensions-order '(".c" ".cpp" ".py" ".java"))
@@ -31,6 +32,7 @@
 
 
 (require 'recentf)
+(setq recentf-save-file (recentf-expand-file-name "~/.cache/emacs/recentf"))
  
 ;; bind recent file open to F7
 (global-set-key (kbd "<f7>") 'ido-recentf-open)
