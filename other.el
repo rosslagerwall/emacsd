@@ -76,4 +76,48 @@
   (lambda() 
     (local-set-key  (kbd "C-c C-x") 'kill-buffer-unconditionally)))
 
+
+;; Mutt support.
+;; Put emacs in mail mode when run from mutt.
+(setq auto-mode-alist
+  (append
+    '(("/tmp/mutt.*" . mail-mode))
+      auto-mode-alist))
+
+; Set the fill column to 72 when in mail mode.
+(add-hook 'mail-mode-hook
+  (lambda ()
+    (setq fci-rule-column 72)
+    (setq fill-column 72)
+))
+
+; Turn on auto-fill when sending mail.
+(add-hook 'mail-mode-hook 'turn-on-auto-fill)
+
+; Force emacs to think that the buffer is modified.
+; This allows one to send an empty email without mutt thinking it is unchanged
+; or without having to type a letter then delete it.
+(add-hook 'mail-mode-hook
+  (lambda ()
+    (set-buffer-modified-p t)
+))
+
+; Add bindings similar to git commit mode.
+; C-c C-c saves and exits.
+; C-c C-x discards and exits.
+; C-x C-# exits with a save prompt. (the usual)
+; C-x C-k exits with a save prompt and a "still has clients" prompt.
+(add-hook 'mail-mode-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c C-x") 'kill-buffer-unconditionally)))
+
+(add-hook
+   'mail-mode-hook
+   (lambda ()
+     (define-key mail-mode-map [(control c) (control c)]
+       (lambda ()
+         (interactive)
+         (save-buffer)
+         (server-edit)))))
+
 (provide 'other)
