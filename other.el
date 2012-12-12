@@ -83,7 +83,7 @@
 ;; Put emacs in mail mode when run from mutt.
 (setq auto-mode-alist
   (append
-    '(("/tmp/mutt.*" . mail-mode))
+    '(("^/tmp/mutt.*$" . mail-mode))
       auto-mode-alist))
 
 ; Set the fill column to 72 when in mail mode.
