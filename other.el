@@ -33,7 +33,8 @@
 
 (require 'recentf)
 (setq recentf-exclude '("^/tmp/mutt.*$" "COMMIT_EDITMSG" "NOTES_EDITMSG"
-                        "MERGE_MSG" "TAG_EDITMSG" "^/tmp/hg-editor-.*\.txt$"))
+                        "MERGE_MSG" "TAG_EDITMSG" "^/tmp/hg-editor-.*\.txt$"
+                        "svn-commit.*tmp"))
 (setq recentf-save-file (recentf-expand-file-name "~/.cache/emacs/recentf"))
  
 ;; bind recent file open to F7
@@ -140,6 +141,26 @@
 ))
 
 (add-hook 'hg-commit-mode-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c C-x") 'kill-buffer-unconditionally)))
+
+
+; Based on git-commit-mode
+(require 'svn-commit)
+; When committing, C-c C-c saves and exits.
+; C-x k y y, C-c C-x or C-c C-c with an empty message discards the buffer and
+; does not commit anything
+; don't remember where you are in the svn commit buffer
+(add-hook 'svn-commit-mode-hook (lambda () (toggle-save-place 0)))
+; (add-hook 'svn-commit-mode-hook 'turn-on-flyspell)
+
+(add-hook 'svn-commit-mode-hook
+  (lambda ()
+    (setq fci-rule-column 72)
+    (setq fill-column 72)
+))
+
+(add-hook 'svn-commit-mode-hook
   (lambda() 
     (local-set-key  (kbd "C-c C-x") 'kill-buffer-unconditionally)))
 
