@@ -224,7 +224,7 @@ Turning on hg commit calls the hooks in `hg-commit-mode-hook'."
 ;;;###autoload
 (setq auto-mode-alist
   (append
-    '(("/tmp/hg-editor-.*\.txt" . hg-commit-mode))
+    '(("^/tmp/hg-editor-.*\.txt$" . hg-commit-mode))
       auto-mode-alist))
 
 (provide 'hg-commit)
