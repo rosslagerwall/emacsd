@@ -32,6 +32,8 @@
 
 
 (require 'recentf)
+(setq recentf-exclude '("^/tmp/mutt.*$" "COMMIT_EDITMSG" "NOTES_EDITMSG"
+                        "MERGE_MSG" "TAG_EDITMSG" "^/tmp/hg-editor-.*\.txt$"))
 (setq recentf-save-file (recentf-expand-file-name "~/.cache/emacs/recentf"))
  
 ;; bind recent file open to F7
