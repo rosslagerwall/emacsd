@@ -120,4 +120,25 @@
          (save-buffer)
          (server-edit)))))
 
+
+
+; Based on git-commit-mode
+(require 'hg-commit)
+; When committing, C-c C-c saves and exits.
+; C-x k y y, C-c C-x or C-c C-c with an empty message discards the buffer and
+; does not commit anything
+; don't remember where you are in the hg commit buffer
+(add-hook 'hg-commit-mode-hook (lambda () (toggle-save-place 0)))
+; (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
+
+(add-hook 'hg-commit-mode-hook
+  (lambda ()
+    (setq fci-rule-column 72)
+    (setq fill-column 72)
+))
+
+(add-hook 'hg-commit-mode-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c C-x") 'kill-buffer-unconditionally)))
+
 (provide 'other)
