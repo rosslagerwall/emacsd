@@ -74,5 +74,7 @@
 ;; not needed for emacs 24
 ;; (setq x-select-enable-clipboard t)
 
+(setq sentence-end-double-space nil)
+
 (require 'bindings)
 (require 'other)
